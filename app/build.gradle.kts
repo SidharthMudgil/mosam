@@ -27,6 +27,9 @@ android {
             )
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -49,15 +52,15 @@ dependencies {
     // coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
-    // local
+    // database - Room
     implementation("androidx.room:room-runtime:2.5.2")
     annotationProcessor("androidx.room:room-compiler:2.5.2")
 
-    // remote
+    // networking - Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    // di
+    // di - Dagger
     implementation("com.google.dagger:dagger:2.47")
     kapt("com.google.dagger:dagger-compiler:2.47")
 
@@ -65,5 +68,6 @@ dependencies {
     implementation("androidx.paging:paging-runtime-ktx:3.2.0")
 
     // ui
-    implementation("com.flaviofaria:kenburnsview:1.0.7")
+    implementation("com.flaviofaria:kenburnsview:1.0.7") // ken burns effect
+    implementation("androidx.core:core-splashscreen:1.0.1") // splash screen
 }

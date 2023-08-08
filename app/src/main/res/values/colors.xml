@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="mosam_white">#FFFBFAF0</color>
+    <color name="mosam_blue">#FF2F3C7E</color>
 </resources>

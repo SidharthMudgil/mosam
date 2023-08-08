@@ -6,6 +6,134 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    
+    <com.flaviofaria.kenburnsview.KenBurnsView
+        android:id="@+id/bg_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_night"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/curr_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="400"
+        android:textSize="70sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".1"
+        tools:text="23" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="weather,flow_temp"
+        app:flow_horizontalGap="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/curr_temperature"
+        app:layout_constraintVertical_bias="0" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="min_temperature,temp_divider,max_temperature"
+        app:flow_horizontalGap="3dp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textSize="18sp"
+        tools:text="Cloudy" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/min_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textSize="18sp"
+        tools:text="24°" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/temp_divider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="/"
+        android:textColor="#80FBFAF0"
+        android:textSize="12sp"
+        tools:ignore="HardcodedText" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/max_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textSize="18sp"
+        tools:text="32°" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_aqi"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        app:cardBackgroundColor="#43FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flow"
+        app:layout_constraintVertical_bias="0"
+        app:strokeWidth="0dp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_aqi"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:flow_horizontalStyle="packed"
+        app:flow_verticalAlign="center"
+        app:flow_horizontalGap="2dp"
+        app:constraint_referenced_ids="ic_aqi,data_aqi"
+        app:layout_constraintBottom_toBottomOf="@id/card_aqi"
+        app:layout_constraintEnd_toEndOf="@id/card_aqi"
+        app:layout_constraintStart_toStartOf="@id/card_aqi"
+        app:layout_constraintTop_toTopOf="@id/card_aqi" />
+
+    <ImageView
+        android:id="@+id/ic_aqi"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintDimensionRatio="1"
+        app:tint="@color/mosam_white"
+        tools:src="@drawable/ic_aqi_normal" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_aqi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textSize="12sp"
+        tools:text="AQI 110" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
