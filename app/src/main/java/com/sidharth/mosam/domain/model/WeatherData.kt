@@ -3,14 +3,14 @@ package com.sidharth.mosam.domain.model
 import androidx.annotation.DrawableRes
 
 data class WeatherData(
-    val current: CurrentWeather,
-    val daily: List<DailyWeather>
+    val today: Weather,
+    val daily: List<DailyForecast>
 )
 
-data class CurrentWeather(
+data class Weather(
     @DrawableRes val background: Int,
-    val sunrise: Long,
-    val sunset: Long,
+    val sunrise: String,
+    val sunset: String,
     val temperature: Double,
     val feelsLike: Double,
     val pressure: Int,
@@ -22,8 +22,8 @@ data class CurrentWeather(
     val weather: String
 )
 
-data class DailyWeather(
-    val day: Long,
+data class DailyForecast(
+    val day: String,
     val temp: Double,
     @DrawableRes val icon: Int,
 )

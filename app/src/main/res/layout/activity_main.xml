@@ -10,7 +10,7 @@
         android:id="@+id/bg_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/bg_sunrise"
+        android:src="@drawable/bg_morning"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
