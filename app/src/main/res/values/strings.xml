@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">mosam</string>
+    <string name="app_name">Mosam</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="degree">Degree</string>
+    <string name="speed">Speed</string>
+    <string name="humidity">Humidity</string>
+    <string name="uvi">UVI</string>
+    <string name="pressure">Pressure</string>
+    <string name="real_feel">Real feel</string>
+    <string name="visibility">Visibility</string>
 </resources>

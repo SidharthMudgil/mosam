@@ -10,7 +10,7 @@
         android:id="@+id/bg_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/bg_night"
+        android:src="@drawable/bg_sunrise"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -22,118 +22,715 @@
         android:id="@+id/curr_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:includeFontPadding="false"
         android:textColor="@color/mosam_white"
         android:textFontWeight="400"
-        android:textSize="70sp"
+        android:textSize="150sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".1"
-        tools:text="23" />
+        app:layout_constraintVertical_bias=".1" />
 
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/flow"
+    <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="weather,flow_temp"
-        app:flow_horizontalGap="10dp"
+        android:layout_marginStart="-10dp"
+        android:text="°"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@+id/curr_temperature"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/curr_temperature"
+        app:layout_constraintTop_toTopOf="@+id/curr_temperature"
+        app:layout_constraintVertical_bias="0.2"
+        tools:ignore="HardcodedText" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-30dp"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/curr_temperature"
         app:layout_constraintVertical_bias="0" />
 
-    <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/flow_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="min_temperature,temp_divider,max_temperature"
-        app:flow_horizontalGap="3dp" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:includeFontPadding="false"
-        android:textColor="@color/mosam_white"
-        android:textSize="18sp"
-        tools:text="Cloudy" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/min_temperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:includeFontPadding="false"
-        android:textColor="@color/mosam_white"
-        android:textSize="18sp"
-        tools:text="24°" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/temp_divider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:includeFontPadding="false"
-        android:text="/"
-        android:textColor="#80FBFAF0"
-        android:textSize="12sp"
-        tools:ignore="HardcodedText" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/max_temperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:includeFontPadding="false"
-        android:textColor="@color/mosam_white"
-        android:textSize="18sp"
-        tools:text="32°" />
-
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_aqi"
+        android:id="@+id/card_daily_forecast"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        app:cardBackgroundColor="#43FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="3"
+        android:layout_margin="@dimen/layout_margin"
+        app:cardBackgroundColor="@color/mosam_trans18"
+        app:layout_constraintBottom_toTopOf="@id/flow_info"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".03"
+        app:layout_constraintHeight_percent=".15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flow"
-        app:layout_constraintVertical_bias="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
         app:strokeWidth="0dp" />
 
     <androidx.constraintlayout.helper.widget.Flow
-        android:id="@+id/flow_aqi"
+        android:id="@+id/flow_daily_forecast"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:flow_horizontalStyle="packed"
+        android:padding="@dimen/layout_margin"
+        app:constraint_referenced_ids="flow_day1,flow_day2,flow_day3,flow_day4,flow_day5,flow_day6,flow_day7,flow_day8"
+        app:flow_horizontalGap="@dimen/flow_horizontal_gap"
         app:flow_verticalAlign="center"
-        app:flow_horizontalGap="2dp"
-        app:constraint_referenced_ids="ic_aqi,data_aqi"
-        app:layout_constraintBottom_toBottomOf="@id/card_aqi"
-        app:layout_constraintEnd_toEndOf="@id/card_aqi"
-        app:layout_constraintStart_toStartOf="@id/card_aqi"
-        app:layout_constraintTop_toTopOf="@id/card_aqi" />
+        app:layout_constraintBottom_toBottomOf="@id/card_daily_forecast"
+        app:layout_constraintEnd_toEndOf="@id/card_daily_forecast"
+        app:layout_constraintStart_toStartOf="@id/card_daily_forecast"
+        app:layout_constraintTop_toTopOf="@id/card_daily_forecast" />
 
-    <ImageView
-        android:id="@+id/ic_aqi"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
-        android:importantForAccessibility="no"
-        app:layout_constraintDimensionRatio="1"
-        app:tint="@color/mosam_white"
-        tools:src="@drawable/ic_aqi_normal" />
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_day1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="label_day1,ic_day1,data_day1"
+        app:flow_horizontalAlign="center"
+        app:flow_verticalGap="@dimen/flow_vertical_gap" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/data_aqi"
+        android:id="@+id/label_day1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/ic_day1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_clear_day"
+        app:tint="@color/mosam_white" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_day1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_day2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="label_day2,ic_day2,data_day2"
+        app:flow_verticalGap="@dimen/flow_vertical_gap" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_day2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/ic_day2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_clear_day"
+        app:tint="@color/mosam_white" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_day2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_day3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="label_day3,ic_day3,data_day3"
+        app:flow_verticalGap="@dimen/flow_vertical_gap" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_day3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/ic_day3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_clear_day"
+        app:tint="@color/mosam_white" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_day3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_day4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="label_day4,ic_day4,data_day4"
+        app:flow_verticalGap="@dimen/flow_vertical_gap" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_day4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/ic_day4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_clear_day"
+        app:tint="@color/mosam_white" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_day4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_day5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="label_day5,ic_day5,data_day5"
+        app:flow_verticalGap="@dimen/flow_vertical_gap" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_day5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/ic_day5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_clear_day"
+        app:tint="@color/mosam_white" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_day5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_day6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="label_day6,ic_day6,data_day6"
+        app:flow_verticalGap="@dimen/flow_vertical_gap" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_day6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/ic_day6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_clear_day"
+        app:tint="@color/mosam_white" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_day6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_day7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="label_day7,ic_day7,data_day7"
+        app:flow_verticalGap="@dimen/flow_vertical_gap" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_day7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/ic_day7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_clear_day"
+        app:tint="@color/mosam_white" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_day7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_day8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="label_day8,ic_day8,data_day8"
+        app:flow_verticalGap="@dimen/flow_vertical_gap" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_day8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/ic_day8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_clear_day"
+        app:tint="@color/mosam_white" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_day8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textAlignment="center"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="14sp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_info"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/layout_margin"
+        android:orientation="horizontal"
+        app:constraint_referenced_ids="flow_wind_routine_info,card_weather_details"
+        app:flow_horizontalGap="@dimen/flow_horizontal_gap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_wind_routine_info"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="card_routine,card_wind_info"
+        app:flow_verticalGap="@dimen/layout_margin" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_routine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/layout_margin"
+        app:cardBackgroundColor="@color/mosam_trans18"
+        app:strokeWidth="0dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_wind_info"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/layout_margin"
+        app:cardBackgroundColor="@color/mosam_trans18"
+        app:strokeWidth="0dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_weather_details"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/layout_margin"
+        app:cardBackgroundColor="@color/mosam_trans18"
+        app:strokeWidth="0dp" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_routine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="flow_sunrise,flow_sunset"
+        app:layout_constraintBottom_toBottomOf="@+id/card_routine"
+        app:layout_constraintEnd_toEndOf="@+id/card_routine"
+        app:layout_constraintStart_toStartOf="@+id/card_routine"
+        app:layout_constraintTop_toTopOf="@+id/card_routine" />
+
+    <ImageView
+        android:id="@+id/ic_routine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_routine"
+        app:layout_constraintBottom_toBottomOf="@id/card_routine"
+        app:layout_constraintEnd_toEndOf="@id/card_routine"
+        app:layout_constraintStart_toStartOf="@id/card_routine"
+        app:layout_constraintTop_toTopOf="@id/card_routine"
+        app:tint="@color/mosam_trans15" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_sunrise"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="label_sunrise,data_sunrise"
+        app:flow_verticalGap="@dimen/flow_vertical_gap" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_sunrise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="@string/sunrise"
+        android:textColor="@color/mosam_white_trans"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_label" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_sunrise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
         android:textColor="@color/mosam_white"
-        android:textSize="12sp"
-        tools:text="AQI 110" />
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_data" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_sunset"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="label_sunset,data_sunset"
+        app:flow_verticalGap="@dimen/flow_vertical_gap" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_sunset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="@string/sunset"
+        android:textColor="@color/mosam_white_trans"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_label" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_sunset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_data" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_wind"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="flow_wind_direction,flow_wind_speed"
+        app:layout_constraintBottom_toBottomOf="@+id/card_wind_info"
+        app:layout_constraintEnd_toEndOf="@+id/card_wind_info"
+        app:layout_constraintStart_toStartOf="@+id/card_wind_info"
+        app:layout_constraintTop_toTopOf="@+id/card_wind_info" />
+
+    <ImageView
+        android:id="@+id/ic_wind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_air"
+        app:layout_constraintBottom_toBottomOf="@id/card_wind_info"
+        app:layout_constraintEnd_toEndOf="@id/card_wind_info"
+        app:layout_constraintStart_toStartOf="@id/card_wind_info"
+        app:layout_constraintTop_toTopOf="@id/card_wind_info"
+        app:tint="@color/mosam_trans15" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_wind_speed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="label_wind_speed,data_wind_speed"
+        app:flow_verticalGap="@dimen/flow_vertical_gap" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_wind_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="@string/degree"
+        android:textColor="@color/mosam_white_trans"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_label" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_wind_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_data" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_wind_direction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="label_wind_direction,data_wind_direction"
+        app:flow_verticalGap="@dimen/flow_vertical_gap" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_wind_direction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="@string/speed"
+        android:textColor="@color/mosam_white_trans"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_label" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_wind_direction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_data" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_weather_details"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/layout_margin"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="flow_feel,flow_pressure,flow_humidity,flow_visibility,flow_uvi"
+        app:flow_verticalGap="@dimen/flow_vertical_gap"
+        app:layout_constraintBottom_toBottomOf="@id/card_weather_details"
+        app:layout_constraintEnd_toEndOf="@id/card_weather_details"
+        app:layout_constraintStart_toStartOf="@id/card_weather_details"
+        app:layout_constraintTop_toTopOf="@id/card_weather_details" />
+
+    <ImageView
+        android:id="@+id/ic_weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_water"
+        app:layout_constraintBottom_toBottomOf="@id/card_weather_details"
+        app:layout_constraintEnd_toEndOf="@id/card_weather_details"
+        app:layout_constraintStart_toStartOf="@id/card_weather_details"
+        app:layout_constraintTop_toTopOf="@id/card_weather_details"
+        app:tint="@color/mosam_trans15" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_feel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="label_feel,data_feel"
+        app:flow_horizontalStyle="spread_inside" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_feel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="@string/real_feel"
+        android:textColor="@color/mosam_white_trans"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_label" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_feel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_data" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_pressure"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="label_pressure,data_pressure"
+        app:flow_horizontalStyle="spread_inside" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="@string/pressure"
+        android:textColor="@color/mosam_white_trans"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_label" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_data" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_humidity"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="label_humidity,data_humidity"
+        app:flow_horizontalStyle="spread_inside" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="@string/humidity"
+        android:textColor="@color/mosam_white_trans"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_label" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_data" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_visibility"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="label_visibility,data_visibility"
+        app:flow_horizontalStyle="spread_inside" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_visibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="@string/visibility"
+        android:textColor="@color/mosam_white_trans"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_label" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_visibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_data" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_uvi"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:constraint_referenced_ids="label_uvi,data_uvi"
+        app:flow_horizontalStyle="spread_inside" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_uvi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="@string/uvi"
+        android:textColor="@color/mosam_white_trans"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_label" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/data_uvi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textColor="@color/mosam_white"
+        android:textFontWeight="500"
+        android:textSize="@dimen/text_size_data" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

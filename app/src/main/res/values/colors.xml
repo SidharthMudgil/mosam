@@ -5,4 +5,7 @@
 
     <color name="mosam_white">#FFFBFAF0</color>
     <color name="mosam_blue">#FF2F3C7E</color>
+    <color name="mosam_white_trans">#66FBFAF0</color>
+    <color name="mosam_trans15">#26000000</color>
+    <color name="mosam_trans18">#2D000000</color>
 </resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_label">12sp</dimen>
+    <dimen name="text_size_data">14sp</dimen>
+    <dimen name="flow_vertical_gap">5dp</dimen>
+    <dimen name="layout_margin">10dp</dimen>
+    <dimen name="flow_horizontal_gap">10dp</dimen>
+</resources>
