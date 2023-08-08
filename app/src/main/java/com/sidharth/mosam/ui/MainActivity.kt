@@ -1,4 +1,4 @@
-package com.sidharth.mosam
+package com.sidharth.mosam.ui
 
 import android.os.Bundle
 import android.view.animation.AccelerateDecelerateInterpolator
