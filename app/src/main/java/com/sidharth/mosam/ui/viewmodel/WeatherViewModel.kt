@@ -1,5 +1,6 @@
 package com.sidharth.mosam.ui.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,13 +15,16 @@ class WeatherViewModel @Inject constructor(
 ) : ViewModel() {
     private val _weatherData = MutableLiveData<WeatherData>()
 
+    val weatherData: LiveData<WeatherData> get() = _weatherData
+
     fun getWeatherData(
+        context: Context,
         latitude: Double,
         longitude: Double
     ): LiveData<WeatherData> {
         viewModelScope.launch {
             _weatherData.postValue(
-                getWeatherDataUseCase.execute(latitude, longitude)
+                getWeatherDataUseCase.execute(context, latitude, longitude)
             )
         }
         return _weatherData

@@ -17,6 +17,7 @@ import com.sidharth.mosam.BaseApplication
 import com.sidharth.mosam.databinding.ActivityMainBinding
 import com.sidharth.mosam.ui.viewmodel.WeatherViewModel
 import com.sidharth.mosam.ui.viewmodel.WeatherViewModelFactory
+import com.sidharth.mosam.util.LocationUtils
 import com.sidharth.mosam.util.NetworkUtils
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -36,8 +37,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val locationPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (isGranted) {
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            val fineLocationGranted = permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false
+            val coarseLocationGranted =
+                permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false
+
+            if (fineLocationGranted || coarseLocationGranted) {
                 bindData()
             } else {
                 finish()
@@ -49,20 +54,50 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         installSplashScreen()
         setContentView(activityMainBinding.root)
-
         BaseApplication.instance.appComponent.inject(this)
 
-        if (hasLocationPermission()) {
-            bindData()
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            LocationUtils.getCurrentLocation(this)?.let {
+                weatherViewModel.getWeatherData(this, it.latitude, it.longitude)
+            }
         } else {
-            locationPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
+            locationPermissionLauncher.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                )
+            )
         }
 
-        NetworkUtils.startNetworkCallback(this, onConnectionAvailable = {
-            weatherViewModel.getWeatherData(0.2, 0.2) // TODO
-        }, onConnectionLost = {})
+        setupNetworkCallback()
         setupTransitionGenerator()
         bindData()
+    }
+
+    private fun setupNetworkCallback() {
+        NetworkUtils.startNetworkCallback(this, onConnectionAvailable = {
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED ||
+                ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                LocationUtils.getCurrentLocation(this)?.let {
+                    weatherViewModel.getWeatherData(this, it.latitude, it.longitude)
+                }
+            }
+        }, onConnectionLost = {})
     }
 
     override fun onPause() {
@@ -77,7 +112,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun bindData() {
-        weatherViewModel.getWeatherData(34.4, 23.3).observe(this) {// TODO
+        weatherViewModel.weatherData.observe(this) {
             activityMainBinding.bgImage.setImageDrawable(
                 AppCompatResources.getDrawable(
                     this,
@@ -93,7 +128,8 @@ class MainActivity : AppCompatActivity() {
             activityMainBinding.dataFeel.text = "${it.current.feelsLike}°C"
             activityMainBinding.dataPressure.text = "${it.current.pressure} hPa"
             activityMainBinding.dataHumidity.text = "${it.current.humidity}%"
-            activityMainBinding.dataVisibility.text = "${roundOffDecimal(it.current.visibility / 1000.0)} km"
+            activityMainBinding.dataVisibility.text =
+                "${roundOffDecimal(it.current.visibility / 1000.0)} km"
             activityMainBinding.dataUvi.text = "${it.current.uvi}"
 
             activityMainBinding.labelDay1.text = it.forecasts[0].day
@@ -139,13 +175,6 @@ class MainActivity : AppCompatActivity() {
                 AppCompatResources.getDrawable(this, it.forecasts[7].icon)
             )
         }
-    }
-
-    private fun hasLocationPermission(): Boolean {
-        return ActivityCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun setupTransitionGenerator() {
