@@ -1,4 +1,4 @@
-# Mosam - Your Real-Time Weather Companion
+# Mosam
 
 Stay informed and prepared with Mosam, the Android app that delivers real-time weather updates for your current location. With a focus on simplicity and accuracy, Mosam ensures you're always in the know about the weather conditions around you.
 
@@ -25,6 +25,7 @@ git clone https://github.com/SidharthMudgil/mosam.git
 
 ### APK Installation
 1. Download the latest APK file from the "Releases" section of the [Mosam GitHub repository](https://github.com/SidharthMudgil/mosam/releases).
+
 | [Download APK](https://github.com/SidharthMudgil/mosam/releases/latest/download/mosam.apk) |
 | -------------------------- |
 
