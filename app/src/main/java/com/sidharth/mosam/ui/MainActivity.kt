@@ -72,6 +72,10 @@ class MainActivity : AppCompatActivity() {
         observeBindWeatherData()
     }
 
+    private fun initDependencyInjection() {
+        BaseApplication.instance.appComponent.inject(this)
+    }
+
     private fun getWeatherData() {
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -93,10 +97,6 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }
-    }
-
-    private fun initDependencyInjection() {
-        BaseApplication.instance.appComponent.inject(this)
     }
 
     private fun setupNetworkCallback() {

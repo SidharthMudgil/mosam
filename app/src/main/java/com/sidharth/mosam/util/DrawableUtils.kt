@@ -4,12 +4,14 @@ import androidx.annotation.DrawableRes
 import com.sidharth.mosam.R
 import java.util.Calendar
 import java.util.Locale
+import java.util.TimeZone
 
 object DrawableUtils {
     @DrawableRes
-    fun getBackgroundBasedOnTime(timestamp: Long): Int {
+    fun getBackgroundBasedOnTime(timestamp: Long, timezone: String): Int {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = timestamp * 1000
+        calendar.timeZone = TimeZone.getTimeZone(timezone)
         return when (calendar.get(Calendar.HOUR_OF_DAY)) {
             in 5..10 -> R.drawable.bg_morning
             in 11..17 -> R.drawable.bg_day
