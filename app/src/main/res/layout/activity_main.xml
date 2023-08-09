@@ -71,7 +71,7 @@
         app:cardBackgroundColor="@color/mosam_trans18"
         app:layout_constraintBottom_toTopOf="@id/flow_info"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".15"
+        app:layout_constraintHeight_percent=".13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1"
@@ -111,10 +111,9 @@
 
     <ImageView
         android:id="@+id/ic_day1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_clear_day"
         app:tint="@color/mosam_white" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -147,10 +146,9 @@
 
     <ImageView
         android:id="@+id/ic_day2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_clear_day"
         app:tint="@color/mosam_white" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -183,10 +181,9 @@
 
     <ImageView
         android:id="@+id/ic_day3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_clear_day"
         app:tint="@color/mosam_white" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -219,10 +216,9 @@
 
     <ImageView
         android:id="@+id/ic_day4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_clear_day"
         app:tint="@color/mosam_white" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -255,10 +251,9 @@
 
     <ImageView
         android:id="@+id/ic_day5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_clear_day"
         app:tint="@color/mosam_white" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -291,10 +286,9 @@
 
     <ImageView
         android:id="@+id/ic_day6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_clear_day"
         app:tint="@color/mosam_white" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -327,10 +321,9 @@
 
     <ImageView
         android:id="@+id/ic_day7"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_clear_day"
         app:tint="@color/mosam_white" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -363,10 +356,9 @@
 
     <ImageView
         android:id="@+id/ic_day8"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_clear_day"
         app:tint="@color/mosam_white" />
 
     <com.google.android.material.textview.MaterialTextView

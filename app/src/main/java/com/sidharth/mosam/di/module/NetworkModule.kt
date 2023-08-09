@@ -12,7 +12,7 @@ import javax.inject.Singleton
 class NetworkModule {
 
     companion object {
-        private const val BASE_URL = "https://api.openweathermap.org/data/3.0/onecall"
+        private const val BASE_URL = "https://api.openweathermap.org/data/3.0/"
     }
 
     @Provides

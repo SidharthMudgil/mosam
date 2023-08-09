@@ -21,11 +21,12 @@ object DrawableUtils {
     @DrawableRes
     fun getIconForWeather(weatherMain: String): Int {
         return when (weatherMain.lowercase(Locale.ROOT)) {
-            "clouds" -> R.drawable.ic_cloudy_day
+            "clouds", "drizzle" -> R.drawable.ic_cloudy_day
             "rain" -> R.drawable.ic_rain
             "snow" -> R.drawable.ic_snow
             "thunderstorm" -> R.drawable.ic_thunderstorm
-            "fog" -> R.drawable.ic_fog
+            "fog", "mist", "smoke", "haze", "dust", "sand", "ash", "squall" -> R.drawable.ic_fog
+            "tornado" -> R.drawable.ic_tornado
             else -> R.drawable.ic_clear_day
         }
     }

@@ -63,8 +63,8 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.7.2")
 
     // database - Room
-    implementation("androidx.room:room-runtime:2.5.2")
-    annotationProcessor("androidx.room:room-compiler:2.5.2")
+    implementation("androidx.room:room-ktx:2.5.2")
+    kapt("androidx.room:room-compiler:2.5.2")
 
     // networking - Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")

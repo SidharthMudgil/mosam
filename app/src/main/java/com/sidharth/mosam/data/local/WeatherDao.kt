@@ -9,6 +9,6 @@ interface WeatherDao {
     @Upsert
     suspend fun upsertWeatherData(weatherEntity: WeatherEntity)
 
-    @Query("select * from mosam_database")
+    @Query("select * from weather_data")
     suspend fun getWeatherData(): WeatherEntity
 }

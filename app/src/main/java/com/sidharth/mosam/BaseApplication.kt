@@ -2,6 +2,7 @@ package com.sidharth.mosam
 
 import android.app.Application
 import com.sidharth.mosam.di.component.AppComponent
+import com.sidharth.mosam.di.component.DaggerAppComponent
 import com.sidharth.mosam.di.module.DatabaseModule
 
 class BaseApplication : Application() {
@@ -18,9 +19,8 @@ class BaseApplication : Application() {
     }
 
     private fun initializeAppComponent() {
-        appComponent = DaggerAppComponent
-            .builder()
-            .DatabaseModule(DatabaseModule(this))
+        appComponent = DaggerAppComponent.builder()
+            .databaseModule(DatabaseModule(instance))
             .build()
     }
 }

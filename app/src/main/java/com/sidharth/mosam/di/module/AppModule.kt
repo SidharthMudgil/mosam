@@ -1,6 +1,5 @@
 package com.sidharth.mosam.di.module
 
-import android.app.Application
 import com.sidharth.mosam.data.local.LocalDataSource
 import com.sidharth.mosam.data.remote.RemoteDataSource
 import com.sidharth.mosam.data.repository.WeatherDataRepositoryImpl
@@ -13,9 +12,7 @@ import javax.inject.Singleton
 
 
 @Module
-class AppModule(
-    private val application: Application?
-) {
+class AppModule {
     @Provides
     @Singleton
     fun provideWeatherDataRepository(

@@ -13,11 +13,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import com.flaviofaria.kenburnsview.RandomTransitionGenerator
-import com.sidharth.mosam.databinding.ActivityMainBinding
 import com.sidharth.mosam.BaseApplication
+import com.sidharth.mosam.databinding.ActivityMainBinding
 import com.sidharth.mosam.ui.viewmodel.WeatherViewModel
 import com.sidharth.mosam.ui.viewmodel.WeatherViewModelFactory
 import com.sidharth.mosam.util.NetworkUtils
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -82,16 +84,16 @@ class MainActivity : AppCompatActivity() {
                     it.background
                 )
             )
-            activityMainBinding.currTemperature.text = it.current.temperature.toString()
+            activityMainBinding.currTemperature.text = it.current.temperature.toInt().toString()
             activityMainBinding.weather.text = it.current.weather
             activityMainBinding.dataSunrise.text = it.current.sunrise
             activityMainBinding.dataSunset.text = it.current.sunset
-            activityMainBinding.dataWindSpeed.text = "${it.current.windSpeed}m/s"
+            activityMainBinding.dataWindSpeed.text = "${it.current.windSpeed} m/s"
             activityMainBinding.dataWindDirection.text = "${it.current.windDegree}°"
             activityMainBinding.dataFeel.text = "${it.current.feelsLike}°C"
-            activityMainBinding.dataPressure.text = "${it.current.pressure}hPa"
+            activityMainBinding.dataPressure.text = "${it.current.pressure} hPa"
             activityMainBinding.dataHumidity.text = "${it.current.humidity}%"
-            activityMainBinding.dataVisibility.text = "${it.current.visibility}m"
+            activityMainBinding.dataVisibility.text = "${roundOffDecimal(it.current.visibility / 1000.0)} km"
             activityMainBinding.dataUvi.text = "${it.current.uvi}"
 
             activityMainBinding.labelDay1.text = it.forecasts[0].day
@@ -103,14 +105,14 @@ class MainActivity : AppCompatActivity() {
             activityMainBinding.labelDay7.text = it.forecasts[6].day
             activityMainBinding.labelDay8.text = it.forecasts[7].day
 
-            activityMainBinding.dataDay1.text = "${it.forecasts[0].temp}°C"
-            activityMainBinding.dataDay2.text = "${it.forecasts[1].temp}°C"
-            activityMainBinding.dataDay3.text = "${it.forecasts[2].temp}°C"
-            activityMainBinding.dataDay4.text = "${it.forecasts[3].temp}°C"
-            activityMainBinding.dataDay5.text = "${it.forecasts[4].temp}°C"
-            activityMainBinding.dataDay6.text = "${it.forecasts[5].temp}°C"
-            activityMainBinding.dataDay7.text = "${it.forecasts[6].temp}°C"
-            activityMainBinding.dataDay8.text = "${it.forecasts[7].temp}°C"
+            activityMainBinding.dataDay1.text = "${it.forecasts[0].temp.toInt()}°"
+            activityMainBinding.dataDay2.text = "${it.forecasts[1].temp.toInt()}°"
+            activityMainBinding.dataDay3.text = "${it.forecasts[2].temp.toInt()}°"
+            activityMainBinding.dataDay4.text = "${it.forecasts[3].temp.toInt()}°"
+            activityMainBinding.dataDay5.text = "${it.forecasts[4].temp.toInt()}°"
+            activityMainBinding.dataDay6.text = "${it.forecasts[5].temp.toInt()}°"
+            activityMainBinding.dataDay7.text = "${it.forecasts[6].temp.toInt()}°"
+            activityMainBinding.dataDay8.text = "${it.forecasts[7].temp.toInt()}°"
 
             activityMainBinding.icDay1.setImageDrawable(
                 AppCompatResources.getDrawable(this, it.forecasts[0].icon)
@@ -153,6 +155,12 @@ class MainActivity : AppCompatActivity() {
                 AccelerateDecelerateInterpolator()
             )
         )
+    }
+
+    private fun roundOffDecimal(number: Double): Double {
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.CEILING
+        return df.format(number).toDouble()
     }
 
     companion object {
