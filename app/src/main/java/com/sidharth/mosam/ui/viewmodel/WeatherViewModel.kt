@@ -13,16 +13,16 @@ class WeatherViewModel @Inject constructor(
     private val getWeatherDataUseCase: GetWeatherDataUseCase
 ) : ViewModel() {
     private val _weatherData = MutableLiveData<WeatherData>()
-    val weatherData: LiveData<WeatherData> get() = _weatherData
 
-    init {
+    fun getWeatherData(
+        latitude: Double,
+        longitude: Double
+    ): LiveData<WeatherData> {
         viewModelScope.launch {
-            _weatherData.postValue(getWeatherDataUseCase.execute())
+            _weatherData.postValue(
+                getWeatherDataUseCase.execute(latitude, longitude)
+            )
         }
-    }
-
-    suspend fun getWeatherData(): LiveData<WeatherData> {
-        _weatherData.postValue(getWeatherDataUseCase.execute())
-        return weatherData
+        return _weatherData
     }
 }

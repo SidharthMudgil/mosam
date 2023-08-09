@@ -7,7 +7,10 @@ import javax.inject.Inject
 class GetWeatherDataUseCaseImpl @Inject constructor(
     private val weatherDataRepository: WeatherDataRepository
 ): GetWeatherDataUseCase {
-    override suspend fun execute(): WeatherData {
-        return weatherDataRepository.getWeatherData()
+    override suspend fun execute(
+        latitude: Double,
+        longitude: Double
+    ): WeatherData {
+        return weatherDataRepository.getWeatherData(latitude, longitude)
     }
 }

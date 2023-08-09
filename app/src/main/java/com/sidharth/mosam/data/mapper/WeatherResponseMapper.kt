@@ -13,19 +13,17 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-class WeatherMapper {
-
+object WeatherResponseMapper {
     fun mapWeatherResponseToWeatherData(response: WeatherResponse): WeatherData {
+        val background = getBackgroundBasedOnTime(response.current.dt)
         val currentWeather = mapCurrentWeather(response.current)
         val dailyWeatherList = mapDailyWeather(response.daily)
-        return WeatherData(currentWeather, dailyWeatherList)
+        return WeatherData(background, currentWeather, dailyWeatherList)
     }
 
     private fun mapCurrentWeather(current: CurrentWeather): Weather {
         val weatherDescription = current.weather.firstOrNull()?.description.orEmpty()
-        val background = getBackgroundBasedOnTime(current.dt)
         return Weather(
-            background = background,
             sunrise = current.sunrise.toHMM(),
             sunset = current.sunset.toHMM(),
             temperature = current.temp,

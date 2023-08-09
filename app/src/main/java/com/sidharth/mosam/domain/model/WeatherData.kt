@@ -1,14 +1,15 @@
 package com.sidharth.mosam.domain.model
 
 import androidx.annotation.DrawableRes
+import com.sidharth.mosam.R
 
 data class WeatherData(
-    val today: Weather,
-    val daily: List<DailyForecast>
+    @DrawableRes val background: Int,
+    val current: Weather,
+    val forecasts: List<DailyForecast>
 )
 
 data class Weather(
-    @DrawableRes val background: Int,
     val sunrise: String,
     val sunset: String,
     val temperature: Double,
@@ -27,3 +28,32 @@ data class DailyForecast(
     val temp: Double,
     @DrawableRes val icon: Int,
 )
+
+object EmptyWeatherData {
+    val instance: WeatherData = WeatherData(
+        background = R.drawable.bg_day,
+        current = Weather(
+            sunrise = "00:00",
+            sunset = "00:00",
+            temperature = 0.0,
+            feelsLike = 0.0,
+            pressure = 0,
+            humidity = 0,
+            visibility = 0,
+            uvi = 0.0,
+            windSpeed = 0.0,
+            windDegree = 0,
+            weather = "No Data"
+        ),
+        forecasts = listOf(
+            DailyForecast("Nil", 0.0, R.drawable.ic_clear_day),
+            DailyForecast("Nil", 0.0, R.drawable.ic_clear_day),
+            DailyForecast("Nil", 0.0, R.drawable.ic_clear_day),
+            DailyForecast("Nil", 0.0, R.drawable.ic_clear_day),
+            DailyForecast("Nil", 0.0, R.drawable.ic_clear_day),
+            DailyForecast("Nil", 0.0, R.drawable.ic_clear_day),
+            DailyForecast("Nil", 0.0, R.drawable.ic_clear_day),
+            DailyForecast("Nil", 0.0, R.drawable.ic_clear_day)
+        )
+    )
+}
