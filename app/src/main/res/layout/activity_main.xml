@@ -10,7 +10,6 @@
         android:id="@+id/bg_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/bg_morning"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -529,7 +528,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
-        android:text="@string/degree"
+        android:text="@string/speed"
         android:textColor="@color/mosam_white_trans"
         android:textFontWeight="500"
         android:textSize="@dimen/text_size_label" />
@@ -556,7 +555,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
-        android:text="@string/speed"
+        android:text="@string/degree"
         android:textColor="@color/mosam_white_trans"
         android:textFontWeight="500"
         android:textSize="@dimen/text_size_label" />

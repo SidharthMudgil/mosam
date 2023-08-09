@@ -43,19 +43,36 @@ class MainActivity : AppCompatActivity() {
                 permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false
 
             if (fineLocationGranted || coarseLocationGranted) {
-                bindData()
+                observeBindWeatherData()
             } else {
                 finish()
             }
         }
+
+    override fun onPause() {
+        super.onPause()
+        NetworkUtils.stopNetworkCallback(applicationContext)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        NetworkUtils.stopNetworkCallback(applicationContext)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         installSplashScreen()
         setContentView(activityMainBinding.root)
-        BaseApplication.instance.appComponent.inject(this)
 
+        initDependencyInjection()
+        getWeatherData()
+        setupNetworkCallback()
+        setupTransitionGenerator()
+        observeBindWeatherData()
+    }
+
+    private fun getWeatherData() {
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_COARSE_LOCATION
@@ -65,8 +82,8 @@ class MainActivity : AppCompatActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            LocationUtils.getCurrentLocation(this)?.let {
-                weatherViewModel.getWeatherData(this, it.latitude, it.longitude)
+            LocationUtils.getCurrentLocation(applicationContext)?.let {
+                weatherViewModel.getWeatherData(applicationContext, it.latitude, it.longitude)
             }
         } else {
             locationPermissionLauncher.launch(
@@ -76,42 +93,22 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }
+    }
 
-        setupNetworkCallback()
-        setupTransitionGenerator()
-        bindData()
+    private fun initDependencyInjection() {
+        BaseApplication.instance.appComponent.inject(this)
     }
 
     private fun setupNetworkCallback() {
-        NetworkUtils.startNetworkCallback(this, onConnectionAvailable = {
-            if (ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED ||
-                ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                LocationUtils.getCurrentLocation(this)?.let {
-                    weatherViewModel.getWeatherData(this, it.latitude, it.longitude)
-                }
-            }
-        }, onConnectionLost = {})
-    }
-
-    override fun onPause() {
-        super.onPause()
-        NetworkUtils.stopNetworkCallback(this)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        NetworkUtils.stopNetworkCallback(this)
+        NetworkUtils.startNetworkCallback(
+            context = applicationContext,
+            onConnectionAvailable = { getWeatherData() },
+            onConnectionLost = {}
+        )
     }
 
     @SuppressLint("SetTextI18n")
-    private fun bindData() {
+    private fun observeBindWeatherData() {
         weatherViewModel.weatherData.observe(this) {
             activityMainBinding.bgImage.setImageDrawable(
                 AppCompatResources.getDrawable(

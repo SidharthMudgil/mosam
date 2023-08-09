@@ -21,12 +21,11 @@ class WeatherViewModel @Inject constructor(
         context: Context,
         latitude: Double,
         longitude: Double
-    ): LiveData<WeatherData> {
+    ) {
         viewModelScope.launch {
             _weatherData.postValue(
                 getWeatherDataUseCase.execute(context, latitude, longitude)
             )
         }
-        return _weatherData
     }
 }

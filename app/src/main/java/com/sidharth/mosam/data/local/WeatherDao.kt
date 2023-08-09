@@ -10,5 +10,5 @@ interface WeatherDao {
     suspend fun upsertWeatherData(weatherEntity: WeatherEntity)
 
     @Query("select * from weather_data")
-    suspend fun getWeatherData(): WeatherEntity
+    suspend fun getWeatherData(): WeatherEntity?
 }
