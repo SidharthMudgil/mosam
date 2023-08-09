@@ -14,7 +14,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import com.flaviofaria.kenburnsview.RandomTransitionGenerator
 import com.sidharth.mosam.databinding.ActivityMainBinding
-import com.sidharth.mosam.di.BaseApplication
+import com.sidharth.mosam.BaseApplication
 import com.sidharth.mosam.ui.viewmodel.WeatherViewModel
 import com.sidharth.mosam.ui.viewmodel.WeatherViewModelFactory
 import com.sidharth.mosam.util.NetworkUtils
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         setContentView(activityMainBinding.root)
 
-        (application as BaseApplication).appComponent.inject(this)
+        BaseApplication.instance.appComponent.inject(this)
 
         if (hasLocationPermission()) {
             bindData()
