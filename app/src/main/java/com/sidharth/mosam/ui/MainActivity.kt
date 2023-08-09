@@ -36,6 +36,15 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
+    private val cityMapping = mapOf(
+        "New York" to Pair(40.712783, -74.005941),
+        "Singapore" to Pair(1.352100, 103.819820),
+        "Mumbai" to Pair(19.076080, 72.877420),
+        "Delhi" to Pair(28.613939, 77.229879),
+        "Sydney" to Pair(-33.868817, 151.207849),
+        "Melbourne" to Pair(-37.813620, 144.963081)
+    )
+
     private val locationPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             val fineLocationGranted = permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false

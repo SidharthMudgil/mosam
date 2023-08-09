@@ -497,7 +497,7 @@
         android:id="@+id/flow_wind"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:constraint_referenced_ids="flow_wind_direction,flow_wind_speed"
+        app:constraint_referenced_ids="flow_wind_speed,flow_wind_direction"
         app:layout_constraintBottom_toBottomOf="@+id/card_wind_info"
         app:layout_constraintEnd_toEndOf="@+id/card_wind_info"
         app:layout_constraintStart_toStartOf="@+id/card_wind_info"
