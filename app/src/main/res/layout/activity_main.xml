@@ -35,7 +35,7 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="-10dp"
+        android:layout_marginStart="-6dp"
         android:text="°"
         android:textColor="@color/mosam_white"
         android:textFontWeight="500"

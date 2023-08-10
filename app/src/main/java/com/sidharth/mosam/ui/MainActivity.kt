@@ -64,12 +64,11 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         installSplashScreen()
         setContentView(activityMainBinding.root)
-
         initDependencyInjection()
-        getWeatherData()
         setupNetworkCallback()
         setupTransitionGenerator()
         observeBindWeatherData()
+        getWeatherData()
     }
 
     private fun initDependencyInjection() {

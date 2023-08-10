@@ -10,8 +10,8 @@ Stay informed and prepared with Mosam, the Android app that delivers real-time w
 
 ## Screenshots
 
-| ![Dark Theme Screenshots](https://github.com/SidharthMudgil/mosam/raw/main/images/morning.png) | ![Dark Theme Screenshots](https://github.com/SidharthMudgil/mosam/raw/main/images/day.png)  |
-| -------------------------- | -------------------------- |
+| ![screenshot](https://github.com/SidharthMudgil/mosam/raw/main/images/morning.png) | ![screenshot](https://github.com/SidharthMudgil/mosam/raw/main/images/day.png)  | ![screenshot](https://github.com/SidharthMudgil/mosam/raw/main/images/evening.png)  | ![screenshot](https://github.com/SidharthMudgil/mosam/raw/main/images/night.png)  |
+| -------------------------- | -------------------------- | -------------------------- | -------------------------- |
 
 ## Installation
 
