@@ -9,7 +9,9 @@ Stay informed and prepared with Mosam, the Android app that delivers real-time w
 - [Contribution](#contribution)
 
 ## Screenshots
-I will add later...
+
+| ![Dark Theme Screenshots](https://github.com/SidharthMudgil/mosam/raw/main/images/morning.png) | ![Dark Theme Screenshots](https://github.com/SidharthMudgil/mosam/raw/main/images/day.png)  |
+| -------------------------- | -------------------------- |
 
 ## Installation
 
@@ -26,8 +28,8 @@ git clone https://github.com/SidharthMudgil/mosam.git
 ### APK Installation
 1. Download the latest APK file from the "Releases" section of the [Mosam GitHub repository](https://github.com/SidharthMudgil/mosam/releases).
 
-| [Download APK](https://github.com/SidharthMudgil/mosam/releases/latest/download/mosam.apk) |
-| -------------------------- |
+| [Download APK](https://github.com/SidharthMudgil/mosam/releases/latest/download/mosam.apk) | [Download AAB](https://github.com/SidharthMudgil/mosam/releases/latest/download/mosam.aab) |
+| -------------------------- | -------------------------- |
 
 2. Enable "Unknown Sources" in your Android device settings to allow the installation of apps from external sources.
 
