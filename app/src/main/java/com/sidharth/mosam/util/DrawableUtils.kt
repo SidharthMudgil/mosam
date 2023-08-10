@@ -13,8 +13,8 @@ object DrawableUtils {
         calendar.timeInMillis = timestamp * 1000
         calendar.timeZone = TimeZone.getTimeZone(timezone)
         return when (calendar.get(Calendar.HOUR_OF_DAY)) {
-            in 5..10 -> R.drawable.bg_morning
-            in 11..17 -> R.drawable.bg_day
+            in 5..9 -> R.drawable.bg_morning
+            in 10..17 -> R.drawable.bg_day
             in 18..19 -> R.drawable.bg_evening
             else -> R.drawable.bg_night
         }

@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
         initDependencyInjection()
+        getWeatherData()
         setupNetworkCallback()
         setupTransitionGenerator()
         observeBindWeatherData()
@@ -82,12 +83,12 @@ class MainActivity : AppCompatActivity() {
             ) == PackageManager.PERMISSION_GRANTED ||
             ActivityCompat.checkSelfPermission(
                 this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             LocationUtils.getCurrentLocation(applicationContext)?.let {
                 weatherViewModel.getWeatherData(applicationContext, it.latitude, it.longitude)
-            }
+            } ?: weatherViewModel.getWeatherData(applicationContext, 0.0, 0.0)
         } else {
             locationPermissionLauncher.launch(
                 arrayOf(
